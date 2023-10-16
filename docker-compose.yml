@@ -1,0 +1,35 @@
+# Author: Axel Ramone
+# Date created: October 14, 2023
+# Last updated: October 14, 2023
+
+version: "3"
+services:
+  apache:
+    container_name: apache-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/public
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - mysql
+    
+  mysql:
+    container_name: mysql-db
+    image: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=CyberSec
+      - MYSQL_USER=DB_OWNER
+      - MYSQL_PASSWORD=csce310
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/data:/var/lib/mysql
+    

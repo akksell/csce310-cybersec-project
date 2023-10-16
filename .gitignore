@@ -1,0 +1,4 @@
+db/data
+src/*.env*
+
+**/.DS_Store
