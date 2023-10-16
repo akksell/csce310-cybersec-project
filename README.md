@@ -30,8 +30,11 @@ You can access the frontend application at http://localhost:8080
 - PHP
 - MySQL
 
+Frameworks:
+- [CodeIgniter 4](https://codeigniter.com/user_guide/index.html)
+
 We may possibly implement React in the frontend for better UX using a CDN.
 
 ## Architecture
 ### ERD
-<div style="width: 640px; height: 480px; margin: 10px; position: relative;"><iframe allowfullscreen frameborder="0" style="width:640px; height:480px" src="https://lucid.app/documents/embedded/210ee56c-53e1-483e-9e75-a2416199fba8" id="Z0YDvs7~H-Oa"></iframe></div>
+![ERD](https://lucid.app/publicSegments/view/d4f4cf60-69f0-4863-a128-20287ec1d0be/image.png)
