@@ -1,4 +1,6 @@
 db/data
+src/writable/debugbar
+
 src/*.env*
 
 **/.DS_Store
