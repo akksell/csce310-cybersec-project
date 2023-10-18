@@ -3,6 +3,7 @@
 # Last updated: October 14, 2023
 
 version: "3"
+name: csce310
 services:
   apache:
     container_name: apache-app
