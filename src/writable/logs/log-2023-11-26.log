@@ -1,0 +1,117 @@
+CRITICAL - 2023-11-26 01:35:07 --> syntax error, unexpected '$data' (T_VARIABLE)
+in APPPATH/Controllers/User.php on line 23.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(285): CodeIgniter\Autoloader\Autoloader->includeFile('/var/www/html/app/Controllers/User.php')
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(263): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\User')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\User')
+ 4 [internal function]: spl_autoload_call('App\\Controllers\\User')
+ 5 SYSTEMPATH/CodeIgniter.php(877): class_exists('\\App\\Controllers\\User', true)
+ 6 SYSTEMPATH/CodeIgniter.php(481): CodeIgniter\CodeIgniter->startController()
+ 7 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 01:36:08 --> Constant expression contains invalid operations
+in APPPATH/Controllers/User.php on line 9.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2023-11-26 01:38:36 --> Call to undefined method CodeIgniter\View\View::extends()
+in APPPATH/Views/user/index.php on line 1.
+ 1 SYSTEMPATH/View/View.php(226): include()
+ 2 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH/Common.php(1188): CodeIgniter\View\View->render('user/index', [], true)
+ 4 APPPATH/Controllers/User.php(15): view('user/index', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->index()
+ 6 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 7 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 01:39:02 --> Call to undefined method CodeIgniter\View\View::extends()
+in APPPATH/Views/user/index.php on line 1.
+ 1 SYSTEMPATH/View/View.php(226): include()
+ 2 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH/Common.php(1188): CodeIgniter\View\View->render('user/index', [], true)
+ 4 APPPATH/Controllers/User.php(15): view('user/index', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->index()
+ 6 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 7 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 01:41:38 --> Class 'App\Controllers\UserModel' not found
+in APPPATH/Controllers/User.php on line 20.
+ 1 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->show(0)
+ 2 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 3 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 01:44:47 --> Class 'App\Controllers\UserModel' not found
+in APPPATH/Controllers/User.php on line 20.
+ 1 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->show(0)
+ 2 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 3 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 01:52:41 --> Undefined variable: user
+in APPPATH/Controllers/User.php on line 45.
+ 1 APPPATH/Controllers/User.php(45): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: user', '/var/www/html/app/Controllers/User.php', 45, [])
+ 2 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->create()
+ 3 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 4 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 01:59:49 --> Declaration of App\Controllers\User::show(int $user_id) should be compatible with CodeIgniter\RESTful\ResourceController::show($id = NULL)
+in APPPATH/Controllers/User.php on line 21.
+ 1 APPPATH/Controllers/User.php(7): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Declaration of App\\Controllers\\User::show(int $user_id) should be compatible with CodeIgniter\\RESTful\\ResourceController::show($id = NULL)', '/var/www/html/app/Controllers/User.php', 21, [...])
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(306): include_once('/var/www/html/app/Controllers/User.php')
+ 3 SYSTEMPATH/Autoloader/Autoloader.php(285): CodeIgniter\Autoloader\Autoloader->includeFile('/var/www/html/app/Controllers/User.php')
+ 4 SYSTEMPATH/Autoloader/Autoloader.php(263): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\User')
+ 5 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\User')
+ 6 [internal function]: spl_autoload_call('App\\Controllers\\User')
+ 7 SYSTEMPATH/CodeIgniter.php(877): class_exists('\\App\\Controllers\\User', true)
+ 8 SYSTEMPATH/CodeIgniter.php(481): CodeIgniter\CodeIgniter->startController()
+ 9 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 04:04:10 --> syntax error, unexpected ''content'' (T_CONSTANT_ENCAPSED_STRING), expecting ']'
+in APPPATH/Views/login/index.php on line 16.
+ 1 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH/Common.php(1188): CodeIgniter\View\View->render('login/index', [], true)
+ 3 APPPATH/Controllers/User.php(64): view('login/index', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->login()
+ 5 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 04:05:13 --> Call to undefined function form_open()
+in APPPATH/Views/login/index.php on line 9.
+ 1 SYSTEMPATH/View/View.php(226): include()
+ 2 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH/Common.php(1188): CodeIgniter\View\View->render('login/index', [], true)
+ 4 APPPATH/Controllers/User.php(64): view('login/index', [...])
+ 5 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->login()
+ 6 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 7 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 04:09:30 --> syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ')'
+in APPPATH/Views/login/index.php on line 18.
+ 1 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH/Common.php(1188): CodeIgniter\View\View->render('login/index', [], true)
+ 3 APPPATH/Controllers/User.php(64): view('login/index', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->login()
+ 5 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 05:29:10 --> Cannot use temporary expression in write context
+in APPPATH/Controllers/User.php on line 71.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2023-11-26 05:33:08 --> Undefined variable: posted
+in APPPATH/Views/login/apply.php on line 49.
+ 1 APPPATH/Views/login/apply.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: posted', '/var/www/html/app/Views/login/apply.php', 49, [...])
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/html/app/Views/login/apply.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1188): CodeIgniter\View\View->render('login/apply', [], true)
+ 5 APPPATH/Controllers/User.php(66): view('login/apply', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->apply()
+ 7 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 8 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 05:33:28 --> Undefined variable: posted
+in APPPATH/Views/login/apply.php on line 49.
+ 1 APPPATH/Views/login/apply.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: posted', '/var/www/html/app/Views/login/apply.php', 49, [...])
+ 2 SYSTEMPATH/View/View.php(226): include('/var/www/html/app/Views/login/apply.php')
+ 3 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1188): CodeIgniter\View\View->render('login/apply', [], true)
+ 5 APPPATH/Controllers/User.php(56): view('login/apply', [...])
+ 6 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->new()
+ 7 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 8 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
