@@ -1,5 +1,5 @@
 db/data
-src/writable/debugbar
+src/writable/debugbar/debugbar*
 
 src/*.env*
 
