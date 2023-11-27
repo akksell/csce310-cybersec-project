@@ -4,16 +4,26 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class User extends Model
+class UserModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'users';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
+    protected $table            = 'user';
+    protected $primaryKey       = 'UIN';
+    protected $useAutoIncrement = false;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'First_Name',
+        'Last_Name',
+        'M_Initial',
+        'Username',
+        'Password',
+        'UIN',
+        'User_Type',
+        'Email',
+        'Discord_Name',
+    ];
 
     // Dates
     protected $useTimestamps = false;

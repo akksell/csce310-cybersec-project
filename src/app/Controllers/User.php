@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
+use App\Models\UserModel;
 
 class User extends ResourceController
 {
@@ -49,9 +50,19 @@ class User extends ResourceController
     }
 
     public function new() {
+        $method = $this->request->getMethod();
         $data = [
             'page_title' => 'Apply for Membership | TAMU CyberSec Center',
         ];
+
+        if ($method == "post") {
+            $formData = $this->request->getPost();
+            $formData['User_Type'] = 'student';
+            $formData['Password'] = password_hash($formData['Password'], PASSWORD_BCRYPT);
+            $userModel = new UserModel();
+            $result = $userModel->save($formData, false);
+            $data['result'] = $result;
+        }
 
         return view('login/apply', $data);
     }
@@ -63,10 +74,6 @@ class User extends ResourceController
         ];
 
         if ($method == "get") {
-            return view('login/apply', $data);
-        } else if ($method == "post") {
-            $formData = $this->request->getPost();
-            
             return view('login/apply', $data);
         }
 

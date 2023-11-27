@@ -115,3 +115,79 @@ in APPPATH/Views/login/apply.php on line 49.
  7 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
  8 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 19:52:35 --> Undefined variable: method
+in APPPATH/Controllers/User.php on line 56.
+ 1 APPPATH/Controllers/User.php(56): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: method', '/var/www/html/app/Controllers/User.php', 56, [...])
+ 2 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->new()
+ 3 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 4 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 19:53:27 --> Class 'App\Controllers\UserModel' not found
+in APPPATH/Controllers/User.php on line 59.
+ 1 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->new()
+ 2 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 3 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 19:56:02 --> Call to a member function insert() on null
+in APPPATH/Controllers/User.php on line 60.
+ 1 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->new()
+ 2 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 3 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 20:23:36 --> Class 'App\Models\UserModel' not found
+in APPPATH/Controllers/User.php on line 61.
+ 1 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->new()
+ 2 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 3 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 20:24:13 --> Cannot declare class App\Controllers\User because the name is already in use
+in APPPATH/Controllers/User.php on line 8.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2023-11-26 20:25:44 --> Allowed fields must be specified for model: "App\Models\UserModel"
+in SYSTEMPATH/Model.php on line 736.
+ 1 SYSTEMPATH/Model.php(736): CodeIgniter\Database\Exceptions\DataException::forInvalidAllowedFields('App\\Models\\UserModel')
+ 2 SYSTEMPATH/BaseModel.php(763): CodeIgniter\Model->doProtectFieldsForInsert([...])
+ 3 SYSTEMPATH/Model.php(715): CodeIgniter\BaseModel->insert([...], false)
+ 4 SYSTEMPATH/BaseModel.php(698): CodeIgniter\Model->insert([...], false)
+ 5 APPPATH/Controllers/User.php(62): CodeIgniter\BaseModel->save([...], false)
+ 6 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->new()
+ 7 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 8 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-11-26 20:27:36 --> mysqli_sql_exception: Table 'cybersec.users' doesn't exist in /var/www/html/system/Database/MySQLi/Connection.php:306
+Stack trace:
+#0 /var/www/html/system/Database/MySQLi/Connection.php(306): mysqli->query('INSERT INTO `us...', 0)
+#1 /var/www/html/system/Database/BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `us...')
+#2 /var/www/html/system/Database/BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `us...')
+#3 /var/www/html/system/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query('INSERT INTO `us...', Array, false)
+#4 /var/www/html/system/Model.php(319): CodeIgniter\Database\BaseBuilder->insert()
+#5 /var/www/html/system/BaseModel.php(788): CodeIgniter\Model->doInsert(Array)
+#6 /var/www/html/system/Model.php(715): CodeIgniter\BaseModel->insert(Array, false)
+#7 /var/www/html/system/BaseModel.php(698): CodeIgniter\Model->insert(Array, false)
+#8 /var/www/html/app/Controllers/User.php(62): CodeIgniter\BaseModel->save(Array, false)
+#9 /var/www/html/system/CodeIgniter.php(919): App\Controllers\User->new()
+#10 /var/www/html/system/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+#11 /var/www/html/system/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 /var/www/html/public/index.php(79): CodeIgniter\CodeIgniter->run()
+#13 {main}
+CRITICAL - 2023-11-26 20:27:36 --> Table 'cybersec.users' doesn't exist
+in SYSTEMPATH/Database/BaseConnection.php on line 646.
+ 1 SYSTEMPATH/Database/BaseBuilder.php(2308): CodeIgniter\Database\BaseConnection->query('INSERT INTO `users` (`First_Name`, `M_Initial`, `Last_Name`, `UIN`, `Email`, `Discord_Name`, `Username`, `Password`, `User_Type`) VALUES (:First_Name:, :M_Initial:, :Last_Name:, :UIN:, :Email:, :Discord_Name:, :Username:, :Password:, :User_Type:)', [...], false)
+ 2 SYSTEMPATH/Model.php(319): CodeIgniter\Database\BaseBuilder->insert()
+ 3 SYSTEMPATH/BaseModel.php(788): CodeIgniter\Model->doInsert([...])
+ 4 SYSTEMPATH/Model.php(715): CodeIgniter\BaseModel->insert([...], false)
+ 5 SYSTEMPATH/BaseModel.php(698): CodeIgniter\Model->insert([...], false)
+ 6 APPPATH/Controllers/User.php(62): CodeIgniter\BaseModel->save([...], false)
+ 7 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->new()
+ 8 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 9 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-26 20:28:15 --> syntax error, unexpected '}', expecting ';' or ','
+in APPPATH/Views/login/apply.php on line 55.
+ 1 SYSTEMPATH/View/View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH/Common.php(1188): CodeIgniter\View\View->render('login/apply', [], true)
+ 3 APPPATH/Controllers/User.php(66): view('login/apply', [...])
+ 4 SYSTEMPATH/CodeIgniter.php(919): App\Controllers\User->new()
+ 5 SYSTEMPATH/CodeIgniter.php(494): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\User))
+ 6 SYSTEMPATH/CodeIgniter.php(353): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH/index.php(79): CodeIgniter\CodeIgniter->run()
