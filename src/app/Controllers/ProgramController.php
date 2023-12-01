@@ -9,44 +9,94 @@ class ProgramController extends BaseController
 {
     public function index()
     {
-        $program_obj = new ProgramModel();
+		$programModel = new ProgramModel();
+        $data = [
+            'page_title' => 'View Programs | TAMU CyberSec Center',
+			'programs' => $programModel->findall()
+        ];
 
-		// Select all Programs from table	
-        $programs = $program_obj->findAll();
-
-		// Send this Program variable to any view file
-		// ...
+        return view('program/index', $data);
     }
 
-    public function insertProgram()
+    public function create() {
+        $data = [
+            'page_title' => 'Create Program | TAMU CyberSec Center',
+        ];
+
+        return view('program/create', $data);
+    }
+
+    public function new()
     {
-		$program_obj = new ProgramModel();
-		
-		// Insert Program row into table
-		$program_obj->insert([
-			"name" => "New Program",
-			"description" => "Program Sample description",
-		]);
+        $method = $this->request->getMethod();
+
+        if ($method == "post") {
+            $formData = $this->request->getPost();
+            // $formData['Name'] = 'student';
+            // $formData['Description'] = password_hash($formData['Password'], PASSWORD_BCRYPT);
+            $programModel = new ProgramModel();
+            $result = $programModel->save($formData, false);
+            $data['result'] = $result;
+        }
+
+		// SWITCH TO REDIRECT
+		// return $this->response->redirect(site_url('program/index'));
+
+		// Set up index context
+		$programModel = new ProgramModel();
+        $data = [
+            'page_title' => 'View Programs | TAMU CyberSec Center',
+			'programs' => $programModel->findall()
+        ];
+
+        return view('program/index', $data);
 	}
 	
-	public function updateProgram(){
-		$program_obj = new ProgramModel();
+	public function edit($id = null){
+		$programModel = new ProgramModel();
+        $data = [
+			'page_title' => 'Edit Program | TAMU CyberSec Center',
+			'program' => $programModel->find($id)
+        ];
 
-		$program_id = 1; // ID to update
-
-		// Update Program information by Program id
-		$program_obj->update($program_id, [
-			"name" => "Update Program",
-			"description" => "Program Sample description update",
-		]);
+        return view('program/edit', $data);
 	}
 
-	public function deleteProgram(){
-		$program_obj = new ProgramModel();
+	public function update($id){}
 
-		$program_id = 1; // ID to delete
+	public function delete($id = null){
+		$programModel = new ProgramModel();
+        $data = [
+			'page_title' => 'Delete Program | TAMU CyberSec Center',
+			'program' => $programModel->find($id)
+        ];
 
-		// Delete Program by ID
-		$program_obj->delete($program_id);
+        return view('program/delete', $data);
 	}
+
+	public function destroy($id){
+		$programModel = new ProgramModel();
+
+		$programModel->where("program_num",$id)->delete();
+		
+		// Set up index context
+		$programModel = new ProgramModel();
+		$data = [
+			'page_title' => 'View Programs | TAMU CyberSec Center',
+			'programs' => $programModel->findall()
+		];
+
+		return view('program/index', $data);
+	}
+
+	public function show($id = null)
+    {
+		$programModel = new ProgramModel();
+        $data = [
+			'page_title' => 'View Program | TAMU CyberSec Center',
+			'program' => $programModel->find($id)
+        ];
+
+        return view('program/show', $data);
+    }
 }

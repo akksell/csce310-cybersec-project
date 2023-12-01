@@ -21,14 +21,14 @@ $routes->post('apply', 'User::new');
  */
 $routes->group("program", function($routes){
 
-	// Call - <url>/program
 	$routes->get("/", "ProgramController::index");
-	// Call - <url>/program/add
-	$routes->get("add", "ProgramController::insertProgram");
-	// Call - <url>/program/update
-	$routes->get("update", "ProgramController::updateProgram");
-	// Call - <url>/program/delete
-	$routes->get("delete", "ProgramController::deleteProgram");
+	$routes->get("create", "ProgramController::create");
+	$routes->post("new", "ProgramController::new");
+	$routes->get("edit/(:num)", "ProgramController::edit/$1");
+	$routes->post("update/(:num)", "ProgramController::update/$1");
+	$routes->get("delete/(:num)", "ProgramController::delete/$1");
+	$routes->get("destroy/(:num)", "ProgramController::destroy/$1");
+	$routes->get("show/(:num)", "ProgramController::show/$1");
 });
 
 
