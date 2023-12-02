@@ -14,7 +14,7 @@ class Classes extends Migration
                 'unsigned'          => true,
                 'unique'            => true,
                 'constraint'        => 9,
-                'auto_increment'    => false,
+                'auto_increment'    => true,
             ],
             'Name' => [
                 'type'              => 'VARCHAR',
