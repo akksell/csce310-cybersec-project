@@ -27,7 +27,7 @@ $routes->group("program", function($routes){
 	$routes->get("edit/(:num)", "ProgramController::edit/$1");
 	$routes->post("update/(:num)", "ProgramController::update/$1");
 	$routes->get("delete/(:num)", "ProgramController::delete/$1");
-	$routes->get("destroy/(:num)", "ProgramController::destroy/$1");
+	$routes->post("destroy/(:num)", "ProgramController::destroy/$1");
 	$routes->get("show/(:num)", "ProgramController::show/$1");
 });
 
