@@ -56,7 +56,8 @@ class ProgramController extends BaseController
         if ($method == "post") {
             $formData = $this->request->getPost();
             // INSERT INTO program (name,description) VALUES($insert,$desc);
-            $this->db->query('INSERT INTO program (name,description) VALUES(\''.$formData['name'].'\',\''.$formData['description'].'\');');
+            $this->db->query('INSERT INTO program (name,description)
+             VALUES(\''.$formData['name'].'\',\''.$formData['description'].'\');');
         }
 
         return $this->response->redirect(site_url('program'));
@@ -78,7 +79,9 @@ class ProgramController extends BaseController
         if($method == "post"){
             $formData = $this->request->getPost();
             // UPDATE program SET name = $UpdatedName, description = $UpdatedDescription WHERE program_num = $id;
-            $this->db->query('UPDATE program SET name = \''.$formData['name'].'\', description = \''.$formData['description'].'\' WHERE program_num = '.$id.';');
+            //Can escape char data: $db->escapeString($title) : will but the quotes around it for you
+            $this->db->query('UPDATE program SET name = \''.$formData['name'].'\', 
+            description = \''.$formData['description'].'\' WHERE program_num = '.$id.';');
         }
         return $this->response->redirect(site_url('program'));
     }
