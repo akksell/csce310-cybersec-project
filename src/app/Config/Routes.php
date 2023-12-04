@@ -18,7 +18,7 @@ $routes->post('apply', 'User::new');
 
 /*
  * Program related routes
- * <!-- Evan Burriola -->
+ * Evan Burriola 
  */
 $routes->group("program", function($routes){
 
@@ -33,11 +33,21 @@ $routes->group("program", function($routes){
 });
 
 /*
- * Program related routes
- * <!-- Min Zhang -->
+ * Application related routes
+ * Evan Burriola 
+ */
+$routes->group("application", function($routes){
+
+	$routes->get("/", "ApplicationController::index");
+	$routes->get("create", "ApplicationController::create");
+	$routes->post("new", "ApplicationController::new");
+});
+
+/*
+ * Event related routes
+ * Min Zhang
  */
 $routes->group("event", function($routes){
-
 	$routes->get("/", "Event::index");
 	$routes->get("create", "Event::create");
 	$routes->post("new", "Event::new");

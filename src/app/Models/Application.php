@@ -5,19 +5,23 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ProgramModel extends Model
+class Application extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'program';
-    protected $primaryKey       = 'program_num';
+    protected $table            = 'application';
+    protected $primaryKey       = 'app_num';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'app_num',
         'program_num',
-        'name',
-        'description'
+        'UIN',
+        'uncom_cert',
+        'com_cert',
+        'purpose_statement',
+        'status'
     ];
 
     // Dates
