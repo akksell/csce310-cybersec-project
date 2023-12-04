@@ -18,7 +18,7 @@ $routes->post('apply', 'User::new');
 
 /*
  * Program related routes
- * <!-- Evan Burriola -->
+ * Evan Burriola 
  */
 $routes->group("program", function($routes){
 
@@ -30,6 +30,17 @@ $routes->group("program", function($routes){
 	$routes->get("delete/(:num)", "ProgramController::delete/$1");
 	$routes->post("destroy/(:num)", "ProgramController::destroy/$1");
 	$routes->get("show/(:num)", "ProgramController::show/$1");
+});
+
+/*
+ * Application related routes
+ * Evan Burriola 
+ */
+$routes->group("application", function($routes){
+
+	$routes->get("/", "ApplicationController::index");
+	$routes->get("create", "ApplicationController::create");
+	$routes->post("new", "ApplicationController::new");
 });
 
 
