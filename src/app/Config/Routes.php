@@ -32,4 +32,18 @@ $routes->group("program", function($routes){
 	$routes->get("show/(:num)", "ProgramController::show/$1");
 });
 
+/*
+ * Program related routes
+ * <!-- Min Zhang -->
+ */
+$routes->group("event", function($routes){
 
+	$routes->get("/", "Event::index");
+	$routes->get("create", "Event::create");
+	$routes->post("new", "Event::new");
+	$routes->get("edit/(:num)", "Event::edit/$1");
+	$routes->post("update/(:num)", "Event::update/$1");
+	$routes->get("delete/(:num)", "Event::delete/$1");
+	$routes->post("destroy/(:num)", "Event::destroy/$1");
+	$routes->get("show/(:num)", "Event::show/$1");
+});
