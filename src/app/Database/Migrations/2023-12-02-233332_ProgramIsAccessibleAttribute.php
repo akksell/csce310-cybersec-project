@@ -1,5 +1,5 @@
-<!-- Evan Burriola -->
 <?php
+// Evan Burriola
 
 namespace App\Database\Migrations;
 

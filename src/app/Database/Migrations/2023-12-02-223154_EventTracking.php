@@ -1,5 +1,5 @@
-<!-- Min Zhang -->
 <?php
+// Min Zhang
 
 namespace App\Database\Migrations;
 

@@ -1,5 +1,5 @@
-<!-- Min Zhang -->
 <?php
+// Min Zhang
 
 namespace App\Controllers;
 
@@ -13,7 +13,7 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
-class ProgramController extends BaseController
+class Event extends BaseController
 {
     //Class var to access db: $this->db->query('');
     protected $db;
@@ -30,7 +30,7 @@ class ProgramController extends BaseController
 
     public function index()
     {
-        // SELECT * FROM program;
+        // SELECT * FROM event;
         $query = $this->db->query('SELECT * FROM event;');
 
         $data = [
@@ -43,8 +43,13 @@ class ProgramController extends BaseController
     }
 
     public function create() {
+        // SELECT * FROM program;
+        $query = $this->db->query('SELECT * FROM program;');
+
         $data = [
             'page_title' => 'Create Event | TAMU CyberSec Center',
+            
+            'programs' => $query->getResultArray()
         ];
 
         return view('event/create', $data);
@@ -57,12 +62,25 @@ class ProgramController extends BaseController
         if ($method == "post") {
             $formData = $this->request->getPost();
             /* 
-            INSERT INTO event 
+            INSERT INTO 
+                event 
                 (Event_Name, UIN, Program_Num, Start_Date, Start_Time, Location, End_Date, End_Time, Event_Type) 
-                VALUES ($insert,$desc);
+                VALUES 
+                ($Event_Name, $UIN, $Program_Num, $Start_Date, $Start_Time, $Location, $End_Date, $End_Time, $Event_Type);
             */
+            $user = 123123123//sessionUser();
+
             $this->db->query('INSERT INTO event (name,description) 
-                VALUES(\''.$formData['name'].'\',\''.$formData['description'].'\');');
+                VALUES(\'' . $formData['Event_Name'] . 
+                '\', ' . $user . 
+                ', '. $formData['Program_Num'] .
+                ', '. $formData['Start_Date'] .
+                ', '. $formData['Start_Time'] .
+                ', \''. $formData['Location'] .
+                '\', '. $formData['End_Date'] .
+                ', '. $formData['End_Time'] .
+                ', \''. $formData['Event_Type'] .
+                '\');');
         }
 
         return $this->response->redirect(site_url('event'));
