@@ -118,9 +118,9 @@ class Event extends BaseController
                 '\', End_Date = \''. $formData['End_Date'] .
                 '\', End_Time = \''. $formData['End_Time'] .
                 '\', Event_Type = \''. $formData['Event_Type'] .
-                '\');');
+                '\' WHERE Event_ID = '. $id . ';');
         }
-        return $this->response->redirect(site_url('program'));
+        return $this->response->redirect(site_url('event'));
     }
 
 	public function delete($id = null){

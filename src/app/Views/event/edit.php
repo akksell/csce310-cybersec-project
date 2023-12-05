@@ -13,7 +13,7 @@
 
         <label for="eventname-input" class="flex flex-col">
           Event Name
-          <input type="text" name="Event_Name" id="name-input" placeholder="<?= $event['Event_Name']?>" class="" />
+          <input type="text" name="Event_Name" id="name-input" placeholder="<?= $event['Event_Name']?>" value="<?= $event['Event_Name']?>" class="" />
         </label>
 
         <label for="programs-input" class="flex flex-col">
@@ -29,32 +29,32 @@
 
         <label for="sdate-input" class="flex flex-col">
           Start Date
-          <input type="date" name="Start_Date" id="startdate-input" placeholder="<?= $event['Start_Date']?>" class="" />
+          <input type="date" name="Start_Date" id="startdate-input" placeholder="<?= $event['Start_Date']?>" value="<?= $event['Start_Date']?>" class="" />
         </label>
 
         <label for="stime-input" class="flex flex-col">
           Start Time
-          <input type="time" name="Start_Time" id="starttime-input" placeholder="<?= $event['Start_Time']?>" class="" />
+          <input type="time" name="Start_Time" id="starttime-input" placeholder="<?= $event['Start_Time']?>" value="<?= $event['Start_Time']?>" class="" />
         </label>
 
         <label for="location-input" class="flex flex-col">
           Location
-          <input type="text" name="Location" id="location-input" placeholder="<?= $event['Location']?>" class="" />
+          <input type="text" name="Location" id="location-input" placeholder="<?= $event['Location']?>" value="<?= $event['Location']?>" class="" />
         </label>
 
         <label for="edate-input" class="flex flex-col">
           End Date
-          <input type="date" name="End_Date" id="enddate-input" placeholder="<?= $event['End_Date']?>" class="" />
+          <input type="date" name="End_Date" id="enddate-input" placeholder="<?= $event['End_Date']?>" value="<?= $event['End_Date']?>" class="" />
         </label>
 
         <label for="etime-input" class="flex flex-col">
           End Time
-          <input type="time" name="End_Time" id="enddate-input" placeholder="<?= $event['End_Time']?>" class="" />
+          <input type="time" name="End_Time" id="enddate-input" placeholder="<?= $event['End_Time']?>" value="<?= $event['End_Time']?>" class="" />
         </label>
 
         <label for="type-input" class="flex flex-col">
           Event Type
-          <input type="text" name="Event_Type" id="type-input" placeholder="<?= $event['Event_Type']?>" class="" />
+          <input type="text" name="Event_Type" id="type-input" placeholder="<?= $event['Event_Type']?>" value="<?= $event['Event_Type']?>" class="" />
         </label>
       </div>
       
