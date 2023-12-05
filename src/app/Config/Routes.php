@@ -57,3 +57,18 @@ $routes->group("event", function($routes){
 	$routes->post("destroy/(:num)", "Event::destroy/$1");
 	$routes->get("show/(:num)", "Event::show/$1");
 });
+
+/*
+ * Event tracking related routes
+ * Min Zhang
+ */
+$routes->group("event_tracking", function($routes){
+	$routes->get("/", "EventTracking::index");
+	$routes->get("create", "EventTracking::create");
+	$routes->post("new", "EventTracking::new");
+	$routes->get("edit/(:num)", "EventTracking::edit/$1");
+	$routes->post("update/(:num)", "EventTracking::update/$1");
+	$routes->get("delete/(:num)", "EventTracking::delete/$1");
+	$routes->post("destroy/(:num)", "EventTracking::destroy/$1");
+	$routes->get("show/(:num)", "EventTracking::show/$1");
+});
