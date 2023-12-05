@@ -1,3 +1,4 @@
+<!-- Min Zhang -->
 <?= $this->extend('shared/layout') ?>
 
 <?= $this->section('page_title') ?>
@@ -35,9 +36,9 @@
              <td><?php echo $event['End_Time']; ?></td>
              <td><?php echo $event['Event_Type']; ?></td>
              <td>
-              <a href="<?php echo base_url('event/show/'.$event['program_num']);?>" class="btn btn-primary btn-sm">View</a>
-              <a href="<?php echo base_url('event/edit/'.$event['program_num']);?>" class="btn btn-primary btn-sm">Edit</a>
-              <a href="<?php echo base_url('event/delete/'.$event['program_num']);?>" class="btn btn-danger btn-sm">Delete</a>
+              <a href="<?php echo base_url('event/show/'.$event['Event_ID']);?>" class="btn btn-primary btn-sm">View</a>
+              <a href="<?php echo base_url('event/edit/'.$event['Event_ID']);?>" class="btn btn-primary btn-sm">Edit</a>
+              <a href="<?php echo base_url('event/delete/'.$event['Event_ID']);?>" class="btn btn-danger btn-sm">Delete</a>
               </td>
           </tr>
          <?php endforeach; ?>

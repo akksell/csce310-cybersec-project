@@ -68,18 +68,18 @@ class Event extends BaseController
                 VALUES 
                 ($Event_Name, $UIN, $Program_Num, $Start_Date, $Start_Time, $Location, $End_Date, $End_Time, $Event_Type);
             */
-            $user = 123123123//sessionUser();
+            $user = 123123123;//sessionUser();
 
-            $this->db->query('INSERT INTO event (name,description) 
+            $this->db->query('INSERT INTO event (Event_Name, UIN, Program_Num, Start_Date, Start_Time, Location, End_Date, End_Time, Event_Type) 
                 VALUES(\'' . $formData['Event_Name'] . 
                 '\', ' . $user . 
                 ', '. $formData['Program_Num'] .
-                ', '. $formData['Start_Date'] .
-                ', '. $formData['Start_Time'] .
-                ', \''. $formData['Location'] .
-                '\', '. $formData['End_Date'] .
-                ', '. $formData['End_Time'] .
-                ', \''. $formData['Event_Type'] .
+                ', \''. $formData['Start_Date'] .
+                '\', \''. $formData['Start_Time'] .
+                '\', \''. $formData['Location'] .
+                '\', \''. $formData['End_Date'] .
+                '\', \''. $formData['End_Time'] .
+                '\', \''. $formData['Event_Type'] .
                 '\');');
         }
 
@@ -87,55 +87,71 @@ class Event extends BaseController
 	}
 	
 	public function edit($id = null){
-		$query = $this->db->query('SELECT * FROM event WHERE Event_ID = '.$id.';');
+		$query1 = $this->db->query('SELECT * FROM event WHERE Event_ID = '.$id.';');
+        $query2 = $this->db->query('SELECT * FROM program;');
+
         $data = [
-			'page_title' => 'Edit Program | TAMU CyberSec Center',
+			'page_title' => 'Edit Event | TAMU CyberSec Center',
             // use getRowArray() on queries that return one row
-			'program' => $query->getRowArray()
+			'event' => $query1->getRowArray(),
+            'programs' => $query2->getResultArray()
         ];
 
-        return view('program/edit', $data);
+        return view('event/edit', $data);
 	}
 
 	public function update($id){
         $method = $this->request->getMethod();
         if($method == "post"){
             $formData = $this->request->getPost();
-            // UPDATE program SET name = $UpdatedName, description = $UpdatedDescription WHERE program_num = $id;
-            $this->db->query('UPDATE program SET name = \''.$formData['name'].'\', description = \''.$formData['description'].'\' WHERE program_num = '.$id.';');
+            // UPDATE event SET Event_Name = $Event_Name, UIN = $UIN, Program_Num = $Program_Num, Start_Date = $Start_Date, Start_Time = $Start_Time, Location = $Location, End_Date = $End_Date, End_Time = $End_Time, Event_Type = $Event_Type WHERE Event_ID = $id;
+
+            $user = 123123123;//sessionUser();
+
+            $this->db->query('UPDATE event SET 
+                Event_Name = \'' . $formData['Event_Name'] .
+                '\', UIN = ' . $user . 
+                ', Program_Num = '. $formData['Program_Num'] .
+                ', Start_Date = \''. $formData['Start_Date'] .
+                '\', Start_Time = \''. $formData['Start_Time'] .
+                '\', Location = \''. $formData['Location'] .
+                '\', End_Date = \''. $formData['End_Date'] .
+                '\', End_Time = \''. $formData['End_Time'] .
+                '\', Event_Type = \''. $formData['Event_Type'] .
+                '\');');
         }
         return $this->response->redirect(site_url('program'));
     }
 
 	public function delete($id = null){
-        // SELECT * FROM program WHERE program_num = $id;
-		$query = $this->db->query('SELECT * FROM program WHERE program_num = '.$id.';');
+        // SELECT * FROM event WHERE Event_ID = $id;
+		$query = $this->db->query('SELECT * FROM event WHERE Event_ID = '.$id.';');
         $data = [
-			'page_title' => 'Delete Program | TAMU CyberSec Center',
-			'program' => $query->getRowArray()
+			'page_title' => 'Delete Event | TAMU CyberSec Center',
+			'event' => $query->getRowArray()
         ];
 
-        return view('program/delete', $data);
+        return view('event/delete', $data);
 	}
 
 	public function destroy($id){
         if($id != null){
-            // DELETE FROM program WHERE program_num = $id;
-           $this->db->query('DELETE FROM program WHERE program_num = '.$id.';');
+            // DELETE FROM event WHERE Event_ID = $id;
+           $this->db->query('DELETE FROM event WHERE Event_ID = '.$id.';');
         }
 		
-        return $this->response->redirect(site_url('program'));
+        return $this->response->redirect(site_url('event'));
 	}
 
 	public function show($id = null)
     {
-        // SELECT * FROM program WHERE program_num = $id;
-		$query = $this->db->query('SELECT * FROM program WHERE program_num = '.$id.';');
+        // SELECT * FROM event WHERE Event_ID = $id;
+		$query = $this->db->query('SELECT * FROM event WHERE Event_ID = '.$id.';');
         $data = [
-			'page_title' => 'View Program | TAMU CyberSec Center',
-			'program' => $query->getRowArray()
+			'page_title' => 'View Event | TAMU CyberSec Center',
+			'event' => $query->getRowArray()
         ];
 
-        return view('program/show', $data);
+        return view('event/show', $data);
     }
 }
