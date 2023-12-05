@@ -41,6 +41,10 @@ $routes->group("application", function($routes){
 	$routes->get("/", "ApplicationController::index");
 	$routes->get("create", "ApplicationController::create");
 	$routes->post("new", "ApplicationController::new");
+	$routes->get("edit/(:num)/(:num)", "ApplicationController::edit/$1/$2");
+	$routes->post("update/(:num)", "ApplicationController::update/$1");
+	$routes->get("delete/(:num)", "ApplicationController::delete/$1");
+	$routes->post("destroy/(:num)", "ApplicationController::destroy/$1");
 });
 
 /*
