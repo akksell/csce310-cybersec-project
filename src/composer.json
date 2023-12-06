@@ -14,6 +14,7 @@
         "ext-intl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
+        "codeigniter4/shield": "^1.0.0-beta",
         "laminas/laminas-escaper": "^2.9",
         "psr/log": "^1.1"
     },

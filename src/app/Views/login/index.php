@@ -8,8 +8,8 @@
 <div class="flex flex-row justify-center">
   <div class="flex flex-col items-center">
     <form action="/login" method="POST" accept-charset="utf-8" class="flex flex-col items-center gap-y-2">
-      <input type="text" name="username" id="username-input" placeholder="username" class="" />
-      <input type="password" name="password" id="password-input" placeholder="password" class="" />
+      <input type="text" name="Username" id="username-input" placeholder="username" class="" />
+      <input type="password" name="Password" id="password-input" placeholder="password" class="" />
       <button type="submit">Sign In</button>
     </form>
   

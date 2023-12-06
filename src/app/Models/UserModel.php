@@ -10,7 +10,7 @@ class UserModel extends Model
     protected $table            = 'user';
     protected $primaryKey       = 'UIN';
     protected $useAutoIncrement = false;
-    protected $returnType       = 'array';
+    protected $returnType       = \App\Entities\UserEntity::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
