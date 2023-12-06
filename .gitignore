@@ -1,5 +1,6 @@
 db/data
 src/writable/debugbar
+src/writable/logs
 
 src/*.env*
 

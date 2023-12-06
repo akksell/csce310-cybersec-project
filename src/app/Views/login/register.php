@@ -7,7 +7,7 @@
 <?= $this->section('content') ?>
 <div class="flex flex-row justify-center">
   <div class="">
-    <form action="/apply" method="POST" accept-charset="utf-8" class="flex flex-col items-center justify-center items-center gap-y-2">
+    <form action="/register" method="POST" accept-charset="utf-8" class="flex flex-col items-center justify-center items-center gap-y-2">
       <div class="flex flex-row items-center justify-items-center ">
         <label for="firstname-input" class="flex flex-col">
           First Name
