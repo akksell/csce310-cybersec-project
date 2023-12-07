@@ -96,6 +96,7 @@ $routes->group("document", function($routes){
 	$routes->post("new/(:num)", "Document::new/$1");
 	$routes->get("edit/(:num)", "Document::edit/$1");
 	$routes->post("update/(:num)", "Document::update/$1");
+
 	$routes->post("destroy/(:num)", "Document::destroy/$1");
 	$routes->get("show/(:num)", "Document::show/$1");
 });
