@@ -1,0 +1,111 @@
+// create database
+CREATE DATABASE CyberSec;
+
+// create user table
+CREATE TABLE `user` (
+  `UIN` int unsigned NOT NULL,
+  `First_Name` varchar(30) NOT NULL,
+  `M_Initial` char(1) NOT NULL,
+  `Last_Name` varchar(30) NOT NULL,
+  `Username` varchar(20) NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `User_Type` varchar(8) NOT NULL,
+  `Email` varchar(100) NOT NULL,
+  `Discord_Name` varchar(32) NOT NULL,
+  PRIMARY KEY (`UIN`),
+  UNIQUE KEY `UIN` (`UIN`),
+  UNIQUE KEY `Username` (`Username`),
+  UNIQUE KEY `Email` (`Email`),
+  UNIQUE KEY `Discord_Name` (`Discord_Name`)
+);
+
+// create college student table
+CREATE TABLE `college_student` (
+  `UIN` int unsigned NOT NULL,
+  `Gender` varchar(10) NOT NULL,
+  `Hispanic_Latino` binary(1) NOT NULL,
+  `Race` varchar(15) NOT NULL,
+  `US_Citizen` binary(1) NOT NULL,
+  `First_Generation` binary(1) NOT NULL,
+  `DoB` date NOT NULL,
+  `GPA` float NOT NULL,
+  `Major` varchar(50) NOT NULL,
+  `Minor_1` varchar(50) NOT NULL,
+  `Minor_2` varchar(50) NOT NULL,
+  `Expected_Graduation` smallint NOT NULL,
+  `School` varchar(75) NOT NULL,
+  `Classification` varchar(15) NOT NULL,
+  `Phone` int unsigned NOT NULL,
+  `Student_Type` varchar(40) NOT NULL,
+  PRIMARY KEY (`UIN`),
+  UNIQUE KEY `UIN` (`UIN`)
+);
+
+// create application table
+CREATE TABLE `application` (
+  `app_num` int unsigned NOT NULL AUTO_INCREMENT,
+  `program_num` int unsigned NOT NULL,
+  `UIN` int unsigned NOT NULL,
+  `uncom_cert` varchar(255) NOT NULL,
+  `com_cert` varchar(255) NOT NULL,
+  `purpose_statement` longtext NOT NULL,
+  `status` binary(1) DEFAULT '0',
+  PRIMARY KEY (`app_num`),
+  KEY `application_program_num_foreign` (`program_num`),
+  KEY `application_UIN_foreign` (`UIN`),
+  CONSTRAINT `application_program_num_foreign` FOREIGN KEY (`program_num`) REFERENCES `program` (`program_num`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `application_UIN_foreign` FOREIGN KEY (`UIN`) REFERENCES `user` (`UIN`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+// create document table
+CREATE TABLE `documentation` (
+  `doc_num` int unsigned NOT NULL AUTO_INCREMENT,
+  `app_num` int unsigned NOT NULL,
+  `link` varchar(255) NOT NULL,
+  `doc_type` varchar(30) NOT NULL,
+  PRIMARY KEY (`doc_num`),
+  UNIQUE KEY `doc_num` (`doc_num`),
+  KEY `documentation_app_num_foreign` (`app_num`),
+  CONSTRAINT `documentation_app_num_foreign` FOREIGN KEY (`app_num`) REFERENCES `application` (`app_num`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+// create program table
+CREATE TABLE `program` (
+  `program_num` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `is_accessible` binary(1) DEFAULT '1',
+  PRIMARY KEY (`program_num`),
+  UNIQUE KEY `program_num` (`program_num`)
+);
+
+// create event table
+CREATE TABLE `event` (
+  `Event_ID` int unsigned NOT NULL AUTO_INCREMENT,
+  `UIN` int unsigned NOT NULL,
+  `Program_Num` int unsigned NOT NULL,
+  `Start_Date` date NOT NULL,
+  `Start_Time` time NOT NULL,
+  `Location` varchar(50) NOT NULL,
+  `End_Date` date NOT NULL,
+  `End_Time` time NOT NULL,
+  `Event_Type` varchar(50) NOT NULL,
+  `Event_Name` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`Event_ID`),
+  KEY `event_UIN_foreign` (`UIN`),
+  KEY `event_Program_Num_foreign` (`Program_Num`),
+  CONSTRAINT `event_Program_Num_foreign` FOREIGN KEY (`Program_Num`) REFERENCES `program` (`program_num`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `event_UIN_foreign` FOREIGN KEY (`UIN`) REFERENCES `user` (`UIN`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+// create event tracking table
+CREATE TABLE `event_tracking` (
+  `ET_Num` int unsigned NOT NULL AUTO_INCREMENT,
+  `Event_ID` int unsigned NOT NULL,
+  `UIN` int unsigned NOT NULL,
+  PRIMARY KEY (`ET_Num`),
+  KEY `event_tracking_UIN_foreign` (`UIN`),
+  KEY `event_tracking_Event_ID_foreign` (`Event_ID`),
+  CONSTRAINT `event_tracking_Event_ID_foreign` FOREIGN KEY (`Event_ID`) REFERENCES `event` (`Event_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `event_tracking_UIN_foreign` FOREIGN KEY (`UIN`) REFERENCES `user` (`UIN`) ON DELETE CASCADE ON UPDATE CASCADE
+);

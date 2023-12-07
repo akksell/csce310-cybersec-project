@@ -6,17 +6,10 @@
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
 <div class="flex flex-row justify-center">
-    <td><?php echo $event['Event_Name']; ?></td>
-    <td><?php echo $event['UIN']; ?></td>
-    <td><?php echo $event['Program_Num']; ?></td>
-    <td><?php echo $event['Start_Date']; ?></td>
-    <td><?php echo $event['Start_Time']; ?></td>
-    <td><?php echo $event['Location']; ?></td>
-    <td><?php echo $event['End_Date']; ?></td>
-    <td><?php echo $event['End_Time']; ?></td>
-    <td><?php echo $event['Event_Type']; ?></td>
-    <form action=<?php echo "/event/destroy/".$event['Event_ID'] ?> method="POST" accept-charset="utf-8" class="flex flex-col items-center justify-center items-center gap-y-2">
-        <button type="submit">Delete Event</button>
+    <td><?php echo $event_tracking['Event_ID']; ?></td>
+    <td><?php echo $event_tracking['UIN']; ?></td>
+    <form action=<?php echo "/event_tracking/destroy/".$event_tracking['ET_Num'] ?> method="POST" accept-charset="utf-8" class="flex flex-col items-center justify-center items-center gap-y-2">
+        <button type="submit">Unjoin Event</button>
     </form>
 </div>
 <?= $this->endSection() ?>

@@ -58,7 +58,7 @@
         </label>
       </div>
       
-      <button type="submit">Update Program</button>
+      <button type="submit">Update Event</button>
     </form>
   </div>
 </div>

@@ -30,33 +30,35 @@ class EventTracking extends BaseController
 
     public function index()
     {
-        // SELECT * FROM event_tracking;
-        $query = $this->db->query('SELECT * FROM event_tracking;');
+        $user = sessionUser();     
+
+        /* 
+        CREATE OR REPLACE view trackings AS SELECT event.*, user.First_Name, user.Last_Name, program.name FROM event
+            INNER JOIN event_tracking ON event.Event_ID = event_tracking.Event_ID 
+            INNER JOIN user ON user.UIN=event_tracking.UIN
+            INNER JOIN program ON event.Program_Num = program.program_num;
+        */
+		$this->db->query('CREATE OR REPLACE view joined AS SELECT event.*, user.First_Name, user.Last_Name, program.name, event_tracking.ET_Num FROM event
+        INNER JOIN event_tracking ON event.Event_ID = event_tracking.Event_ID 
+        INNER JOIN user ON user.UIN=event.UIN
+        INNER JOIN program ON event.Program_Num = program.program_num 
+        where event_tracking.UIN = '.$user->UIN.';');
+
+        // SELECT * FROM trackings;
+        $query = $this->db->query('SELECT * FROM joined');
 
         $data = [
             'page_title' => 'View Event Tracking | TAMU CyberSec Center',
             // use getResultArray() on queries that return multiple rows
-			'events_tracking' => $query->getResultArray()
+			'events' => $query->getResultArray()
         ];
 
         return view('event_tracking/index', $data);
     }
 
-    public function create() {
-        // SELECT * FROM event;
-        $query = $this->db->query('SELECT * FROM event;');
-
-        $data = [
-            'page_title' => 'Create Event | TAMU CyberSec Center',
-            
-            'events' => $query->getResultArray()
-        ];
-
-        return view('event_tracking/create', $data);
-    }
-
-    public function new()
+    public function new($id = null)
     {
+        $user = sessionUser();  
         $method = $this->request->getMethod();
 
         if ($method == "post") {
@@ -66,14 +68,34 @@ class EventTracking extends BaseController
                 event_tracking 
                 (Event_ID, UIN) 
                 VALUES 
-                ($Event_ID, $UIN);
+                ($id, $UIN);
             */
 
             $this->db->query('INSERT INTO event_tracking (Event_ID, UIN) 
-                VALUES(' . $formData['Event_ID'] . 
-                ', ' . $formData['UIN'] . ');');
+                VALUES(' . $id . 
+                ', ' . $user->UIN . ');');
         }
 
-        return $this->response->redirect(site_url('event_tracking'));
+        return $this->response->redirect(site_url('event'));
+	}
+
+    public function delete($id = null){
+        // SELECT * FROM event_tracking WHERE ET_Num = $id;
+		$query = $this->db->query('SELECT * FROM event_tracking WHERE ET_Num = '.$id.';');
+        $data = [
+			'page_title' => 'Unjoin Event | TAMU CyberSec Center',
+			'event_tracking' => $query->getRowArray()
+        ];
+
+        return view('event_tracking/delete', $data);
+	}
+
+	public function destroy($id){
+        if($id != null){
+            // DELETE FROM event_tracking WHERE ET_Num = $id;
+           $this->db->query('DELETE FROM event_tracking WHERE ET_Num = '.$id.';');
+        }
+		
+        return $this->response->redirect(site_url('event'));
 	}
 }

@@ -80,11 +80,21 @@ $routes->group("event", function($routes){
  */
 $routes->group("event_tracking", function($routes){
 	$routes->get("/", "EventTracking::index");
-	$routes->get("create", "EventTracking::create");
-	$routes->post("new", "EventTracking::new");
-	$routes->get("edit/(:num)", "EventTracking::edit/$1");
-	$routes->post("update/(:num)", "EventTracking::update/$1");
+	$routes->post("new/(:num)", "EventTracking::new/$1");
 	$routes->get("delete/(:num)", "EventTracking::delete/$1");
 	$routes->post("destroy/(:num)", "EventTracking::destroy/$1");
-	$routes->get("show/(:num)", "EventTracking::show/$1");
+});
+
+/*
+ * Document related routes
+ * Min Zhang
+ */
+$routes->group("document", function($routes){
+	$routes->get("create/(:num)", "Document::create/$1");
+	$routes->post("new/(:num)", "Document::new/$1");
+	$routes->get("edit/(:num)", "Document::edit/$1");
+	$routes->post("update/(:num)", "Document::update/$1");
+	$routes->get("delete/(:num)", "Document::delete/$1");
+	$routes->post("destroy/(:num)", "Document::destroy/$1");
+	$routes->get("show/(:num)", "Document::show/$1");
 });

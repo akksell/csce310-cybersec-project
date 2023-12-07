@@ -7,29 +7,40 @@
 
 <?= $this->section('content') ?>
 <div class="flex flex-row justify-center">
-    <table class="table table-bordered table-striped" id="event-list">
-    <a href="<?php echo base_url('event_tracking/create');?>" class="btn btn-primary btn-sm">Create</a>
-       <thead>
-          <tr>
-             <th>Event ID</th>
-             <th>Student UIN</th>
-          </tr>
-       </thead>
-       <tbody>
-          <?php if($events_tracking): ?>
-          <?php foreach($events_tracking as $event_tracking): ?>
-          <tr>
-             <td><?php echo $event_tracking['Event_ID']; ?></td>
-             <td><?php echo $event_tracking['UIN']; ?></td>
-             <td>
-              <a href="<?php echo base_url('event_tracking/show/'.$event_tracking['ET_Num']);?>" class="btn btn-primary btn-sm">View</a>
-              <a href="<?php echo base_url('event_tracking/edit/'.$event_tracking['ET_Num']);?>" class="btn btn-primary btn-sm">Edit</a>
-              <a href="<?php echo base_url('event_tracking/delete/'.$event_tracking['ET_Num']);?>" class="btn btn-danger btn-sm">Delete</a>
-              </td>
-          </tr>
+      <table class="table table-bordered table-striped" id="event-list">
+      <thead>
+         <tr>
+            <th>Event Name</th>
+            <th>Admin</th>
+            <th>Program Name</th>
+            <th>Start Date</th>
+            <th>Start Time</th>
+            <th>Location</th>
+            <th>End Date</th>
+            <th>End Time</th>
+            <th>Event Type</th>
+         </tr>
+      </thead>
+      <tbody>
+         <?php if($events): ?>
+         <?php foreach($events as $event): ?>
+         <tr>
+            <td><?php echo $event['Event_Name']; ?></td>
+            <td><?php echo "{$event['First_Name']} {$event['Last_Name']}"; ?></td>
+            <td><?php echo $event['name']; ?></td>
+            <td><?php echo $event['Start_Date']; ?></td>
+            <td><?php echo $event['Start_Time']; ?></td>
+            <td><?php echo $event['Location']; ?></td>
+            <td><?php echo $event['End_Date']; ?></td>
+            <td><?php echo $event['End_Time']; ?></td>
+            <td><?php echo $event['Event_Type']; ?></td>
+            <td>
+            <a href="<?php echo base_url('event_tracking/delete/'.$event['ET_Num']);?>" class="btn btn-danger btn-sm">Remove</a>
+            </td>
+         </tr>
          <?php endforeach; ?>
          <?php endif; ?>
-       </tbody>
-    </table>
+      </tbody>
+   </table>
 </div>
 <?= $this->endSection() ?>

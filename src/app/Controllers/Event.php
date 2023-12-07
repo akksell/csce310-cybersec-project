@@ -30,13 +30,34 @@ class Event extends BaseController
 
     public function index()
     {
-        // SELECT * FROM event;
-        $query = $this->db->query('SELECT * FROM event;');
+        $user = sessionUser();
+
+        $query;
+    
+        if ($user->User_Type == 'admin') {
+            /* 
+            CREATE OR REPLACE view events AS SELECT event.*, user.First_Name, user.Last_Name, program.name FROM event 
+                INNER JOIN user ON user.UIN=event.UIN
+                INNER JOIN program ON event.Program_Num = program.program_num;
+            */
+            $this->db->query('CREATE OR REPLACE view events AS SELECT event.*, user.First_Name, user.Last_Name, program.name FROM event INNER JOIN user ON user.UIN=event.UIN INNER JOIN program ON event.Program_Num = program.program_num;');
+            
+            // SELECT * FROM events;
+            $query = $this->db->query('SELECT * FROM events');
+        } else {
+            /* 
+            SELECT * FROM events WHERE Program_Num IN 
+                SELECT program_num FROM application WHERE status = 1 AND 
+                UIN = $userUIN;
+            */
+            $query = $this->db->query('SELECT * FROM events WHERE Program_Num IN (SELECT program_num FROM application WHERE status = 1 AND UIN = '.$user->UIN.');');
+        }
 
         $data = [
             'page_title' => 'View Events | TAMU CyberSec Center',
             // use getResultArray() on queries that return multiple rows
-			'events' => $query->getResultArray()
+			'events' => $query->getResultArray(),
+            'user' => $user
         ];
 
         return view('event/index', $data);
@@ -68,11 +89,11 @@ class Event extends BaseController
                 VALUES 
                 ($Event_Name, $UIN, $Program_Num, $Start_Date, $Start_Time, $Location, $End_Date, $End_Time, $Event_Type);
             */
-            $user = 123123123;//sessionUser();
+            $user = sessionUser();
 
             $this->db->query('INSERT INTO event (Event_Name, UIN, Program_Num, Start_Date, Start_Time, Location, End_Date, End_Time, Event_Type) 
                 VALUES(\'' . $formData['Event_Name'] . 
-                '\', ' . $user . 
+                '\', ' . $user->UIN . 
                 ', '. $formData['Program_Num'] .
                 ', \''. $formData['Start_Date'] .
                 '\', \''. $formData['Start_Time'] .
@@ -106,11 +127,11 @@ class Event extends BaseController
             $formData = $this->request->getPost();
             // UPDATE event SET Event_Name = $Event_Name, UIN = $UIN, Program_Num = $Program_Num, Start_Date = $Start_Date, Start_Time = $Start_Time, Location = $Location, End_Date = $End_Date, End_Time = $End_Time, Event_Type = $Event_Type WHERE Event_ID = $id;
 
-            $user = 123123123;//sessionUser();
+            $user = sessionUser();
 
             $this->db->query('UPDATE event SET 
                 Event_Name = \'' . $formData['Event_Name'] .
-                '\', UIN = ' . $user . 
+                '\', UIN = ' . $user->UIN . 
                 ', Program_Num = '. $formData['Program_Num'] .
                 ', Start_Date = \''. $formData['Start_Date'] .
                 '\', Start_Time = \''. $formData['Start_Time'] .
@@ -145,11 +166,24 @@ class Event extends BaseController
 
 	public function show($id = null)
     {
-        // SELECT * FROM event WHERE Event_ID = $id;
-		$query = $this->db->query('SELECT * FROM event WHERE Event_ID = '.$id.';');
+        /* 
+        CREATE OR REPLACE view trackings AS SELECT event.*, user.First_Name, user.Last_Name, program.name FROM event
+            INNER JOIN event_tracking ON event.Event_ID = event_tracking.Event_ID 
+            INNER JOIN user ON user.UIN=event_tracking.UIN
+            INNER JOIN program ON event.Program_Num = program.program_num;
+        */
+		$this->db->query('CREATE OR REPLACE view trackings AS SELECT event.*, user.First_Name, user.Last_Name, program.name, event_tracking.ET_Num FROM event
+            INNER JOIN event_tracking ON event.Event_ID = event_tracking.Event_ID 
+            INNER JOIN user ON user.UIN=event_tracking.UIN
+            INNER JOIN program ON event.Program_Num = program.program_num 
+            where event.Event_ID = '.$id.';');
+
+        // SELECT * FROM trackings;
+        $query = $this->db->query('SELECT * FROM trackings');
+
         $data = [
 			'page_title' => 'View Event | TAMU CyberSec Center',
-			'event' => $query->getRowArray()
+			'events' => $query->getResultArray()
         ];
 
         return view('event/show', $data);

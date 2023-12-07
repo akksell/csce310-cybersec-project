@@ -28,6 +28,7 @@
              <td>
               <a href="<?php echo base_url('application/edit/'.$application['app_num'].'/'.$application['program_num']);?>" class="btn btn-primary btn-sm">Edit</a>
               <a href="<?php echo base_url('application/delete/'.$application['app_num']);?>" class="btn btn-danger btn-sm">Delete</a>
+              <a href="<?php echo base_url('document/show/'.$application['app_num']);?>" class="btn btn-primary btn-sm">View Documents</a>
               </td>
           </tr>
          <?php endforeach; ?>
