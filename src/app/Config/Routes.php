@@ -10,6 +10,7 @@ $routes->get('/', 'Home::index');
 $routes->group('admin', static function ($routes) {
   $routes->get('users', 'User::index');
   $routes->get('users/(:segment)', 'User::show/$1');
+  $routes->get('users/(:segment)/edit', 'User::edit/$1');
   $routes->post('users/(:segment)/edit', 'User::update/$1');
   $routes->get('users/new', 'User::createAdmin');
   $routes->post('users/new', 'User::newAdmin');
@@ -21,6 +22,7 @@ $routes->group('admin', static function ($routes) {
  * User related routes
  */
 $routes->get('profile', 'User::show');
+$routes->get('profile/edit', 'User::edit');
 $routes->post('profile/update', 'User::update');
 $routes->get('login', 'User::login');
 $routes->post('login', 'User::login');

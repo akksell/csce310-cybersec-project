@@ -59,6 +59,22 @@ class User extends BaseController
         return view('user/view', $data);
     }
 
+    public function edit($id = null) {
+        $method = $this->request->getMethod();
+        $user = sessionUser();
+        if ($method != "get" || !$user) {
+            return view('index');
+        }
+
+        $data = [
+            "page_title" => 'Edit ' . $user->Username . ' | TAMU CyberSec Center',
+        ];
+
+        if ($id === null) {
+            return view('user/edit');
+        }
+    }
+
     public function update($id = null)
     {
         $method = $this->request->getMethod();
@@ -69,13 +85,13 @@ class User extends BaseController
         }
 
         $user = sessionUser();
-        if (!$user->UIN) {
+        if (!$user) {
             return view();
         }
 
         $formData = $this->request->getPost();
         if ($id !== null && $user->hasPermission('admin')) {
-
+            return view('index');
         }
 
         if ($id === null && str_contains($path, 'profile')) {
@@ -86,7 +102,7 @@ class User extends BaseController
                 $sql = <<<SQL
                     SELECT Username 
                     FROM user
-                    WHERE Username = {$formData['Username']};
+                    WHERE Username = '{$formData['Username']}';
                 SQL;
                 $query = $this->db->query($sql);
                 $result = $query->getRowArray();
@@ -99,14 +115,14 @@ class User extends BaseController
             $sql = <<<SQL
                 UPDATE user 
                 SET 
-                    First_Name = {$formData['First_Name']},
-                    Last_Name = {$formData['Last_Name']},
-                    M_Initial = {$formData['M_Initial']},
-                    Email = {$formData['M_Initial']},
-                    Username = {$formData['Username']},
-                    Discord_Name = {$formData['Discord_Name']},
+                    First_Name = '{$formData['First_Name']}',
+                    Last_Name = '{$formData['Last_Name']}',
+                    M_Initial = '{$formData['M_Initial']}',
+                    Email = '{$formData['Email']}',
+                    Username = '{$formData['Username']}',
+                    Discord_Name = '{$formData['Discord_Name']}',
                 WHERE
-                    UIN = '$uin';
+                    UIN = $uin;
             SQL;
             $query = $this->db->query($sql);
             $result = $query->getRowArray();
@@ -134,8 +150,22 @@ class User extends BaseController
             $formData = $this->request->getPost();
             $formData['User_Type'] = 'student';
             $formData['Password'] = password_hash($formData['Password'], PASSWORD_BCRYPT);
-            $userModel = new UserModel();
-            $result = $userModel->save($formData, false);
+            $sql =<<<SQL
+                INSERT INTO user 
+                VALUES ( 
+                    {$formData['UIN']},
+                    '{$formData['First_Name']}',
+                    '{$formData['M_Initial']}',
+                    '{$formData['Last_Name']}',
+                    '{$formData['Username']}',
+                    '{$formData['Password']}',
+                    '{$formData['User_Type']}',
+                    '{$formData['Email']}',
+                    '{$formData['Discord_Name']}'
+                );
+            SQL;
+            $query = $this->db->query($sql);
+            $result = $query->getRowArray();
             $data['result'] = $result;
         }
 
