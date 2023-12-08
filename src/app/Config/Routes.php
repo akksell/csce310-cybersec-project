@@ -44,6 +44,7 @@ $routes->group("program", function($routes){
 	$routes->get("delete/(:num)", "ProgramController::delete/$1");
 	$routes->post("destroy/(:num)", "ProgramController::destroy/$1");
 	$routes->get("show/(:num)", "ProgramController::show/$1");
+	$routes->post("activation/(:num)", "ProgramController::activation/$1");
 });
 
 /*
@@ -59,6 +60,8 @@ $routes->group("application", function($routes){
 	$routes->post("update/(:num)", "ApplicationController::update/$1");
 	$routes->get("delete/(:num)", "ApplicationController::delete/$1");
 	$routes->post("destroy/(:num)", "ApplicationController::destroy/$1");
+	$routes->get("review/(:num)/(:num)", "ApplicationController::review/$1/$2");
+	$routes->post("update_status/(:num)", "ApplicationController::update_status/$1");
 });
 
 /*

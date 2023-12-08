@@ -8,7 +8,12 @@
 <?= $this->section('content') ?>
 <div class="flex flex-row justify-center">
     <table class="table table-bordered table-striped" id="program-list">
-    <a href="<?php echo base_url('program/create');?>" class="btn btn-primary btn-sm">Create</a>
+    <?php if($user->hasPermission('admin')): ?>
+      <a href="<?php echo base_url('program/create');?>" class="btn btn-primary btn-sm">New Program</a>
+    <?php endif; ?>
+    <?php if($user->hasPermission('student')): ?>
+      <a href="<?php echo base_url('application/create');?>" class="btn btn-primary btn-sm">Apply</a>
+    <? endif;?>
        <thead>
           <tr>
              <th>Name</th>
@@ -19,13 +24,31 @@
           <?php if($programs): ?>
           <?php foreach($programs as $program): ?>
           <tr>
-             <td><?php echo $program['name']; ?></td>
-             <td><?php echo $program['description']; ?></td>
+             <?php if($user->hasPermission('admin') || $program['is_accessible'] == '1'): ?>
+              <td><?php echo $program['name']; ?></td>
+              <td><?php echo $program['description']; ?></td>
+              <td>
+             
              <td>
               <a href="<?php echo base_url('program/show/'.$program['program_num']);?>" class="btn btn-primary btn-sm">View</a>
+              <?php if($user->hasPermission('admin')): ?>
               <a href="<?php echo base_url('program/edit/'.$program['program_num']);?>" class="btn btn-primary btn-sm">Edit</a>
               <a href="<?php echo base_url('program/delete/'.$program['program_num']);?>" class="btn btn-danger btn-sm">Delete</a>
+              
+              <form action=<?php echo "/program/activation/".$program['program_num'];?> method="POST" accept-charset="utf-8" class="flex flex-col items-center justify-center items-center gap-y-2">
+                  <div class="flex flex-col items-left justify-items-center">
+                  <?php if($program['is_accessible'] == '1'):?>
+                    <button type="submit" name="status" value="0">Deactivate</button>
+                  <?endif;?>
+                  <?php if($program['is_accessible'] == '0'):?>
+                    <button type="submit" name="status" value="1">Activate</button>
+                  <?endif;?>
+                </div>
+                </form>
+
+              <?php endif;?>
               </td>
+            <?php endif;?>
           </tr>
          <?php endforeach; ?>
          <?php endif; ?>

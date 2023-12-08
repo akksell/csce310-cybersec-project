@@ -30,13 +30,16 @@ class ProgramController extends BaseController
 
     public function index()
     {
+        $user = sessionUser();
+        if(!$user) return $this->response->redirect(site_url('/login'));
         // SELECT * FROM program;
         $query = $this->db->query('SELECT * FROM program;');
 
         $data = [
             'page_title' => 'View Programs | TAMU CyberSec Center',
             // use getResultArray() on queries that return multiple rows
-			'programs' => $query->getResultArray()
+			'programs' => $query->getResultArray(),
+            'user' => $user
         ];
 
         return view('program/index', $data);
@@ -83,6 +86,30 @@ class ProgramController extends BaseController
             //Can escape char data: $db->escapeString($title) : will but the quotes around it for you
             $this->db->query('UPDATE program SET name = \''.$formData['name'].'\', 
             description = \''.$formData['description'].'\' WHERE program_num = '.$id.';');
+        }
+        return $this->response->redirect(site_url('program'));
+    }
+
+    public function activation($program_num){
+        $user = sessionUser();
+        if(!$user) return $this->response->redirect(site_url('/login'));
+        if($user->hasPermission('student')) return $this->response->redirect(site_url('/program'));
+
+        $method = $this->request->getMethod();
+        if($method == "post"){
+            $sql;
+            $formData = $this->request->getPost();
+            if($formData['status'] == '0'){
+                $sql = <<<SQL
+                    UPDATE program SET is_accessible = 0 WHERE program_num = $program_num;
+                SQL;
+            }elseif($formData['status'] == '1'){
+                $sql = <<<SQL
+                    UPDATE program SET is_accessible = 1 WHERE program_num = $program_num;
+                SQL;
+            }
+            $this->db->query($sql);
+            
         }
         return $this->response->redirect(site_url('program'));
     }
