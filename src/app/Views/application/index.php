@@ -29,8 +29,9 @@
              <td><?php echo $application['name']; ?></td>
              <td>
               <?php 
-                if ($application['status'] == 0){echo "Pending";} 
-                else{echo "Accepted";}
+                if ($application['status'] == 2){echo "Pending";} 
+                elseif ($application['status'] == 1){echo "Accepted";}
+                else{echo "Rejected";}
               ?>
              </td>
              <td>
@@ -39,6 +40,9 @@
                 <a href="<?php echo base_url('application/delete/'.$application['app_num']);?>" class="btn btn-danger btn-sm">Delete</a>
               <?php endif; ?>
               <a href="<?php echo base_url('document/show/'.$application['app_num']);?>" class="btn btn-primary btn-sm">View Documents</a>
+              <?php if ($user->hasPermission('admin')): ?>
+                <a href="<?php echo base_url('application/review/'.$application['app_num'].'/'.$application['program_num']);?>" class="btn btn-primary btn-sm">Review</a>
+              <?php endif; ?>
              </td>
           </tr>
          <?php endforeach; ?>

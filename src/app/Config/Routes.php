@@ -59,6 +59,8 @@ $routes->group("application", function($routes){
 	$routes->post("update/(:num)", "ApplicationController::update/$1");
 	$routes->get("delete/(:num)", "ApplicationController::delete/$1");
 	$routes->post("destroy/(:num)", "ApplicationController::destroy/$1");
+	$routes->get("review/(:num)/(:num)", "ApplicationController::review/$1/$2");
+	$routes->post("update_status/(:num)", "ApplicationController::update_status/$1");
 });
 
 /*

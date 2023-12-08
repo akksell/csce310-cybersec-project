@@ -122,7 +122,7 @@ class ApplicationController extends BaseController
         $data = [
             'page_title' => 'Edit Application | TAMU CyberSec Center',
             'app_num' => $app_num,
-            'application' => $query->getResultArray(),
+            'application' => $query->getRowArray(),
             'program' => $programQuery->getRowArray()
         ];
 
@@ -172,5 +172,47 @@ class ApplicationController extends BaseController
 		
         return $this->response->redirect(site_url('application'));
 	}
+
+    public function review($app_num, $program_num){
+        $user = sessionUser();
+        if(!$user) return $this->response->redirect(site_url('/login'));
+        if($user->hasPermission('student')) return $this->response->redirect(site_url('/application'));
+                
+        $query = $this->db->query('SELECT * FROM application WHERE app_num = \''.$app_num.'\';');
+        $programQuery = $this->db->query('SELECT name FROM program WHERE program_num = '.$program_num.';');
+        $data = [
+            'page_title' => 'Review Application | TAMU CyberSec Center',
+            'app_num' => $app_num,
+            'application' => $query->getRowArray(),
+            'program' => $programQuery->getRowArray()
+        ];
+
+        return view('application/review', $data);
+    }
+
+    public function update_status($app_num){
+        $user = sessionUser();
+        if(!$user) return $this->response->redirect(site_url('/login'));
+        if($user->hasPermission('student')) return $this->response->redirect(site_url('/application'));
+
+        $method = $this->request->getMethod();
+        if($method == "post"){
+
+            $sql;
+            $formData = $this->request->getPost();
+            if($formData['status'] == '0'){
+                $sql = <<<SQL
+                    UPDATE application SET status = 0 WHERE app_num = $app_num;
+                SQL;
+            }elseif($formData['status'] == '1'){
+                $sql = <<<SQL
+                    UPDATE application SET status = 1 WHERE app_num = $app_num;
+                SQL;
+            }
+            $this->db->query($sql);
+
+        }
+        return $this->response->redirect(site_url('application'));
+    }
 
 }
