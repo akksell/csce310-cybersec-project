@@ -97,14 +97,6 @@ class ApplicationController extends BaseController
         return $this->response->redirect(site_url('application'));
     }
 
-    // TODO:
-
-    public function documentation(){}
-
-    public function new_doc(){
-
-    }
-
 	public function delete($app_num){
 		$query = $this->db->query('SELECT * FROM application WHERE app_num = '.$app_num.';');
         $application = $query->getResultArray();
