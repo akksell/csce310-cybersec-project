@@ -7,6 +7,9 @@
 
 <?= $this->section('content') ?>
 <div class="flex flex-row justify-center">
+   <?php if($user->hasPermission('student')): ?>
+      <a href="<?php echo base_url('application/create');?>" class="btn btn-primary btn-sm">Apply</a>
+    <? endif;?>
     <table class="table table-bordered table-striped" id="application-list">
        <thead>
           <tr>

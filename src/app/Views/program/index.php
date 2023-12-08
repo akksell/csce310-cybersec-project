@@ -9,8 +9,11 @@
 <div class="flex flex-row justify-center">
     <table class="table table-bordered table-striped" id="program-list">
     <?php if($user->hasPermission('admin')): ?>
-    <a href="<?php echo base_url('program/create');?>" class="btn btn-primary btn-sm">New Program</a>
+      <a href="<?php echo base_url('program/create');?>" class="btn btn-primary btn-sm">New Program</a>
     <?php endif; ?>
+    <?php if($user->hasPermission('student')): ?>
+      <a href="<?php echo base_url('application/create');?>" class="btn btn-primary btn-sm">Apply</a>
+    <? endif;?>
        <thead>
           <tr>
              <th>Name</th>

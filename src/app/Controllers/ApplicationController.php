@@ -75,9 +75,15 @@ class ApplicationController extends BaseController
             SQL;
             $query = $this->db->query($sql);
 
+            $array = $query->getResultArray();
+
+            if(!$array){
+                return $this->response->redirect(site_url('/application'));
+            }
+
             $data = [
                 'page_title' => 'Applications | TAMU CyberSec Center',
-                'programs' => $query->getResultArray()
+                'programs' => $array
             ];
 
             return view('application/create', $data);
