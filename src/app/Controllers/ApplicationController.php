@@ -37,16 +37,12 @@ class ApplicationController extends BaseController
         if($user->User_Type == 'student'){
             // SELECT * FROM program;
             $sql = <<<SQL
-                SELECT program.program_num, program.name, application.status, application.app_num 
-                FROM program JOIN application ON application.program_num = program.program_num
-                WHERE application.UIN = $user->UIN; 
+                SELECT * FROM application_filter WHERE application.UIN = $user->UIN; 
             SQL;
             $query = $this->db->query($sql);
         }else{
             $sql = <<<SQL
-                SELECT program.program_num, program.name, application.status, application.app_num, user.First_Name, user.Last_Name
-                FROM program JOIN application ON application.program_num = program.program_num 
-                JOIN user ON application.UIN = user.UIN
+                SELECT * FROM application_filter JOIN user ON application.UIN = user.UIN
             SQL;
             $query = $this->db->query($sql);
         }
