@@ -44,6 +44,7 @@ $routes->group("program", function($routes){
 	$routes->get("delete/(:num)", "ProgramController::delete/$1");
 	$routes->post("destroy/(:num)", "ProgramController::destroy/$1");
 	$routes->get("show/(:num)", "ProgramController::show/$1");
+	$routes->post("activation/(:num)", "ProgramController::activation/$1");
 });
 
 /*
