@@ -40,7 +40,8 @@ class Document extends BaseController
             'page_title' => 'View Documents | TAMU CyberSec Center',
             // use getResultArray() on queries that return multiple rows
 			'docs' => $query->getResultArray(),
-            'id' => $id
+            'id' => $id,
+            'user' => $user
         ];
 
         return view('documentation/show', $data);
