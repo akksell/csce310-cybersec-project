@@ -9,5 +9,7 @@
     <div class="container mx-auto">
       <?= $this->renderSection('content') ?>
     </div>
+    <?= $this->renderSection('overlays') ?>
   </body>
+  <?= $this->renderSection('scripts') ?>
 </html>

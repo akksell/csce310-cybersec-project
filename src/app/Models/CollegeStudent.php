@@ -7,10 +7,10 @@ use CodeIgniter\Model;
 class CollegeStudent extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'collegestudents';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $table            = 'college_students';
+    protected $primaryKey       = 'UIN';
+    protected $useAutoIncrement = false;
+    protected $returnType       = \App\Entities\CollegeStudentEntity::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [];
