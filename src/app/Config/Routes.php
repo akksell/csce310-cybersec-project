@@ -74,7 +74,6 @@ $routes->group("event", function($routes){
 	$routes->post("new", "Event::new");
 	$routes->get("edit/(:num)", "Event::edit/$1");
 	$routes->post("update/(:num)", "Event::update/$1");
-	$routes->get("delete/(:num)", "Event::delete/$1");
 	$routes->post("destroy/(:num)", "Event::destroy/$1");
 	$routes->get("show/(:num)", "Event::show/$1");
 });
@@ -86,7 +85,6 @@ $routes->group("event", function($routes){
 $routes->group("event_tracking", function($routes){
 	$routes->get("/", "EventTracking::index");
 	$routes->post("new/(:num)", "EventTracking::new/$1");
-	$routes->get("delete/(:num)", "EventTracking::delete/$1");
 	$routes->post("destroy/(:num)", "EventTracking::destroy/$1");
 });
 

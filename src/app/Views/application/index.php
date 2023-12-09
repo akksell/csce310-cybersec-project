@@ -7,7 +7,7 @@
 
 <?= $this->section('content') ?>
 <div class="flex flex-row justify-center">
-    <table class="table-fixed w-2/3 border" id="application-list">
+    <table class="table-fixed w-2/3 border  my-2" id="application-list">
        <thead>
           <tr class="border-2">
              <?php if ($user->hasPermission('admin')): ?>
