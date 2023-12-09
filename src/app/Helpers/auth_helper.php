@@ -14,7 +14,7 @@ function sessionUser() {
   $sql = <<<SQL
     SELECT * 
       FROM user
-      WHERE UIN = "$id";
+      WHERE UIN = $id;
   SQL;
   $query = $db->query($sql);
   $result = $query->getRowArray();
