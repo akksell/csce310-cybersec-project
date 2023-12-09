@@ -14,7 +14,8 @@ class ApplicationView extends Migration
                     program.program_num,
                     program.name,
                     application.status,
-                    application.app_num
+                    application.app_num,
+                    application.UIN
                 FROM
                     program
                         JOIN
