@@ -32,10 +32,15 @@
         <?php if(sessionUser()->hasPermission('admin')): ?>
           <li>
             <a href="/admin/users" class="block py-2 px-3 text-white hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:border-b-2 md:hover:border-b-white md:p-0">Users</a>
-          <li>
+        </li>
         <?php endif; ?>
+        <li>
           <a href="/profile" class="block py-2 px-3 text-white hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:border-b-2 md:hover:border-b-white md:p-0">Profile</a>
         </li>
+        <li class="text-white">
+          <form action="/logout" method="POST">
+            <button type="submit"><i class="fas fa-sign-out-alt"></i></button>
+          </form>
         </li>
       </ul>
     </div>
