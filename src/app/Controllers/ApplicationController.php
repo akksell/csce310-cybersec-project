@@ -42,7 +42,7 @@ class ApplicationController extends BaseController
             $query = $this->db->query($sql);
         }else{
             $sql = <<<SQL
-                SELECT * FROM application_filter JOIN user ON application_filter.UIN = $user->UIN
+                SELECT * FROM application_filter JOIN user ON application_filter.UIN = user.UIN
             SQL;
             $query = $this->db->query($sql);
         }
