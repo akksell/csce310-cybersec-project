@@ -24,10 +24,10 @@
               <td>
              
              <td class="text-center">
-              <a href="<?php echo base_url('program/show/'.$program['program_num']);?>" class="btn btn-primary btn-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
+              <a href="<?php echo base_url('program/show/'.$program['program_num']);?>" class="px-1 btn btn-primary btn-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
               <?php if($user->hasPermission('admin')): ?>
-              <a href="<?php echo base_url('program/edit/'.$program['program_num']);?>" class="btn btn-primary btn-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-              <a href="<?php echo base_url('program/delete/'.$program['program_num']);?>" class="btn btn-danger btn-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+              <a href="<?php echo base_url('program/edit/'.$program['program_num']);?>" class="px-1 btn btn-primary btn-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+              <a href="<?php echo base_url('program/delete/'.$program['program_num']);?>" class="px-1 btn btn-danger btn-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
               
               <form action=<?php echo "/program/activation/".$program['program_num'];?> method="POST" accept-charset="utf-8" class="flex flex-col items-center justify-center items-center gap-y-2">
                   <div class="flex flex-col items-left justify-items-center">
