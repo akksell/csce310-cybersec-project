@@ -79,17 +79,6 @@ class EventTracking extends BaseController
         return $this->response->redirect(site_url('event'));
 	}
 
-    public function delete($id = null){
-        // SELECT * FROM event_tracking WHERE ET_Num = $id;
-		$query = $this->db->query('SELECT * FROM event_tracking WHERE ET_Num = '.$id.';');
-        $data = [
-			'page_title' => 'Unjoin Event | TAMU CyberSec Center',
-			'event_tracking' => $query->getRowArray()
-        ];
-
-        return view('event_tracking/delete', $data);
-	}
-
 	public function destroy($id){
         if($id != null){
             // DELETE FROM event_tracking WHERE ET_Num = $id;

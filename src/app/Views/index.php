@@ -1,3 +1,4 @@
+<?= $this->extend('shared/layout') ?>
 <?
 $suser = sessionUser();
 if (isset($suser)) {

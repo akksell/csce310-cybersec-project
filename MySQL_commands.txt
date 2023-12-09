@@ -42,6 +42,7 @@ CREATE TABLE `college_student` (
 );
 
 // create application table
+// Evan Burriola
 CREATE TABLE `application` (
   `app_num` int unsigned NOT NULL AUTO_INCREMENT,
   `program_num` int unsigned NOT NULL,
@@ -49,12 +50,12 @@ CREATE TABLE `application` (
   `uncom_cert` varchar(255) NOT NULL,
   `com_cert` varchar(255) NOT NULL,
   `purpose_statement` longtext NOT NULL,
-  `status` binary(1) DEFAULT '0',
+  `status` int DEFAULT '2',
   PRIMARY KEY (`app_num`),
   KEY `application_program_num_foreign` (`program_num`),
   KEY `application_UIN_foreign` (`UIN`),
   CONSTRAINT `application_program_num_foreign` FOREIGN KEY (`program_num`) REFERENCES `program` (`program_num`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `application_UIN_foreign` FOREIGN KEY (`UIN`) REFERENCES `user` (`UIN`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `application_UIN_foreign` FOREIGN KEY (`UIN`) REFERENCES `college_student` (`UIN`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 // create document table
@@ -70,6 +71,7 @@ CREATE TABLE `documentation` (
 );
 
 // create program table
+// Evan Burriola
 CREATE TABLE `program` (
   `program_num` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(30) NOT NULL,
@@ -78,6 +80,18 @@ CREATE TABLE `program` (
   PRIMARY KEY (`program_num`),
   UNIQUE KEY `program_num` (`program_num`)
 );
+
+// application view
+// Evan Burriola
+CREATE VIEW application_filter AS
+  SELECT 
+    program.program_num,
+    program.name,
+    application.status,
+    application.app_num
+  FROM program
+      JOIN application ON 
+        application.program_num = program.program_num;
 
 // create event table
 CREATE TABLE `event` (
