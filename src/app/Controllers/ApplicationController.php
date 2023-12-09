@@ -67,7 +67,7 @@ class ApplicationController extends BaseController
         if($user->hasPermission('student')){
             $sql = <<<SQL
                 SELECT * FROM program WHERE program_num NOT IN
-                (SELECT program_num FROM application WHERE UIN = $user->UIN);
+                (SELECT program_num FROM application WHERE UIN = $user->UIN) AND is_accessible = 1;
             SQL;
             $query = $this->db->query($sql);
 

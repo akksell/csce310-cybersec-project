@@ -390,11 +390,12 @@ class User extends BaseController
             $result = $newUserRes && $newStudentRes;
             if (!$result) {
                 $data['errors'] = ['Failed to Register, please try again'];
+                return view('login/register', $data);
             }
             $data['result'] = $result;
         }
 
-        return view('login/register', $data);
+        return $this->response->redirect(site_url('login'));        
     }
 
     public function register() {
