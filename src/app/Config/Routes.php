@@ -49,6 +49,7 @@ $routes->group("program", function($routes){
 	$routes->get("delete/(:num)", "ProgramController::delete/$1");
 	$routes->post("destroy/(:num)", "ProgramController::destroy/$1");
 	$routes->get("show/(:num)", "ProgramController::show/$1");
+	$routes->post("activation/(:num)", "ProgramController::activation/$1");
 });
 
 /*
@@ -64,6 +65,8 @@ $routes->group("application", function($routes){
 	$routes->post("update/(:num)", "ApplicationController::update/$1");
 	$routes->get("delete/(:num)", "ApplicationController::delete/$1");
 	$routes->post("destroy/(:num)", "ApplicationController::destroy/$1");
+	$routes->get("review/(:num)/(:num)", "ApplicationController::review/$1/$2");
+	$routes->post("update_status/(:num)", "ApplicationController::update_status/$1");
 });
 
 /*
@@ -76,7 +79,6 @@ $routes->group("event", function($routes){
 	$routes->post("new", "Event::new");
 	$routes->get("edit/(:num)", "Event::edit/$1");
 	$routes->post("update/(:num)", "Event::update/$1");
-	$routes->get("delete/(:num)", "Event::delete/$1");
 	$routes->post("destroy/(:num)", "Event::destroy/$1");
 	$routes->get("show/(:num)", "Event::show/$1");
 });
@@ -88,7 +90,6 @@ $routes->group("event", function($routes){
 $routes->group("event_tracking", function($routes){
 	$routes->get("/", "EventTracking::index");
 	$routes->post("new/(:num)", "EventTracking::new/$1");
-	$routes->get("delete/(:num)", "EventTracking::delete/$1");
 	$routes->post("destroy/(:num)", "EventTracking::destroy/$1");
 });
 

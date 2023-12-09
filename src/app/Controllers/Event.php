@@ -144,17 +144,6 @@ class Event extends BaseController
         return $this->response->redirect(site_url('event'));
     }
 
-	public function delete($id = null){
-        // SELECT * FROM event WHERE Event_ID = $id;
-		$query = $this->db->query('SELECT * FROM event WHERE Event_ID = '.$id.';');
-        $data = [
-			'page_title' => 'Delete Event | TAMU CyberSec Center',
-			'event' => $query->getRowArray()
-        ];
-
-        return view('event/delete', $data);
-	}
-
 	public function destroy($id){
         if($id != null){
             // DELETE FROM event WHERE Event_ID = $id;
