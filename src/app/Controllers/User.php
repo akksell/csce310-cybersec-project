@@ -420,7 +420,7 @@ class User extends BaseController
         if ($method == "get") {
             $user = sessionUser();
             if ($user) {
-                return $this->response->redirect(site_url('dashboard'));
+                return $this->response->redirect(site_url(''));
             }
             return view('login/index', $data);
         }
