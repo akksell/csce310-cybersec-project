@@ -6,8 +6,9 @@
 
 <?= $this->section('content') ?>
 <div class="flex flex-col w-full items-center pt-12">
-  <div class="flex flex-row w-3/4 mb-8">
+  <div class="flex flex-row w-3/4 mb-8 items-center justify-between">
     <h1 class="text-4xl">All Users</h1>
+    <a href="/admin/users/new" class="bg-emerald-500 text-gray-100 rounded-md p-2 hover:bg-emerald-700 transition duration-175 ease-in-out"><i class="fas fa-plus-circle"></i> Admin</a>
   </div>
   <table class="table-auto border-collapse border w-3/4 rounded">
     <thead class="border border-1">
