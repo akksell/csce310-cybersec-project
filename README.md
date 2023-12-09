@@ -1,6 +1,8 @@
 # CSCE 310 - Cybersec Class Project
 
-This is our final project for TAMU CSCE 310 - Database Design.
+# MOST OF THE CODE IS IN THE CONTROLLER FOLDER UNDER SRC/APP AS WELL AS THE MYSQL_Commands.txt in the root.
+
+This is our final project for TAMU CSCE 310 - Database Design. 
 
 ## Project Requirements
 [Project Requirements](https://canvas.tamu.edu/courses/247645/pages/class-project-description?module_item_id=8738202)
